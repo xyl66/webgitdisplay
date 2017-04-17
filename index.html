@@ -28,26 +28,48 @@
 			</ul>
 			</div>
 			<div id="content" style="backround-color:#20a0ff;height:800px;width:80%;float:left;text-align: center;">
-			<div style="height:30px;" ><h3>用户列表</h3></div>	
-				<table style="margin: 0 auto" cellspacing="20">
-					<tr>
-						<th>用户名</th>
-						<th>工号</th>
-						<th>状态</th>
-						<th>操作</th>
-					</tr>
-					<tbody>
-						<tr>
-							<td>admin</td>
-							<td>admin</td>
-							<td>有效</td>
-							<td><button type="submit">编辑</button> <button type="submit">禁用</input></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+				<div style="height:30px;" ><h3>用户列表</h3></div>	
+					<table style="margin: 0 auto" cellspacing="20">
+						<thead>
+							<tr>
+								<th>用户名</th>
+								<th>工号</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>admin</td>
+								<td>admin</td>
+								<td>有效</td>
+								<td>
+								<button type="submit">编辑</button> 
+								<button type="submit">禁用</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<button type="submit" onclick="getLocation()">获取当前位置</button>
+					<p id="showLoacation"></p>
+				</div>
 		</div>
 		<div id="footer" style="background-color:#FFA500;clear:both;text-align:center">版权</div>
 	</div>
+	<script>
+		var t=document.getElementById("showLoacation");
+		function getLocation(){
+			if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(showPosition);
+			}
+			else{
+				t.innerHTML="该浏览器不支持获取地理位置。";
+			}
+		}
+		function showPosition(position){
+			t.innerHTML="纬度: " + position.coords.latitude + 
+			"<br>经度: " + position.coords.longitude;	
+		}
+	</script>
 </body>
 </html>
